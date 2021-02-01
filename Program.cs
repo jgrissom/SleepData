@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace SleepData
 {
@@ -16,7 +17,7 @@ namespace SleepData
             if (resp == "1")
             {
                 // create data file
-
+                StreamWriter sw = new StreamWriter("data.txt");
                  // ask a question
                 Console.WriteLine("How many weeks of data is needed?");
                 // input the response (convert to int)
@@ -44,10 +45,12 @@ namespace SleepData
                         hours[i] = rnd.Next(4, 13);
                     }
                     // M/d/yyyy,#|#|#|#|#|#|#
-                    Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+                    //Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+                    sw.WriteLine($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
                     // add 1 week to date
                     dataDate = dataDate.AddDays(7);
                 }
+                sw.Close();
             }
             else if (resp == "2")
             {
